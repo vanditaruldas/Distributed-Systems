@@ -67,38 +67,38 @@ Under no failures, a request for a key is directly forwarded to the coordinator 
 
 3) Quorum replication
 
-For linearizability, you can implement a quorum-based replication used by Dynamo.
+   For linearizability, you can implement a quorum-based replication used by Dynamo.
 
-Note that the original design does not provide linearizability. You need to adapt the design.
+   Note that the original design does not provide linearizability. You need to adapt the design.
 
-The replication degree N should be 3. This means that given a key, the key’s coordinator as well as the 2 successor nodes in the Dynamo ring should store the key.
+   The replication degree N should be 3. This means that given a key, the key’s coordinator as well as the 2 successor nodes in the        Dynamo ring should store the key.
 
-Both the reader quorum size R and the writer quorum size W should be 2.
+   Both the reader quorum size R and the writer quorum size W should be 2.
 
-The coordinator for a get/put request should always contact other two nodes and get a vote from each (i.e., an acknowledgement for a write, or a value for a read).
+   The coordinator for a get/put request should always contact other two nodes and get a vote from each (i.e., an acknowledgement for a    write, or a value for a read).
 
-For write operations, all objects can be versioned in order to distinguish stale copies from the most recent copy.
+   For write operations, all objects can be versioned in order to distinguish stale copies from the most recent copy.
 
-For read operations, if the readers in the reader quorum have different versions of the same object, the coordinator should pick the most recent version and return it.
+   For read operations, if the readers in the reader quorum have different versions of the same object, the coordinator should pick the    most recent version and return it.
 
 4) Chain replication
 
-Another replication strategy you can implement is chain replication, which provides linearizability.
+   Another replication strategy you can implement is chain replication, which provides linearizability.
 
-If you are interested in more details, please take a look at the following paper: http://www.cs.cornell.edu/home/rvr/papers/osdi04.pdf
+   If you are interested in more details, please take a look at the following paper:                http://www.cs.cornell.edu/home/rvr/papers/osdi04.pdf
 
-In chain replication, a write operation always comes to the first partition; then it propagates to the next two partitions in sequence. The last partition returns the result of the write.
+   In chain replication, a write operation always comes to the first partition; then it propagates to the next two partitions in            sequence. The last partition returns the result of the write.
 
-A read operation always comes to the last partition and reads the value from the last partition.
+   A read operation always comes to the last partition and reads the value from the last partition.
 
 5) Failure handling
 
-Handling failures should be done very carefully because there can be many corner cases to consider and cover.
+   Handling failures should be done very carefully because there can be many corner cases to consider and cover.
 
-Just as the original Dynamo, each request can be used to detect a node failure.
+   Just as the original Dynamo, each request can be used to detect a node failure.
 
-For this purpose, you can use a timeout for a socket read; you can pick a reasonable timeout value, e.g., 100 ms, and if a node does not respond within the timeout, you can consider it a failure.
+   For this purpose, you can use a timeout for a socket read; you can pick a reasonable timeout value, e.g., 100 ms, and if a node does    not respond within the timeout, you can consider it a failure.
 
-Do not rely on socket creation or connect status to determine if a node has failed. Due to the Android emulator networking setup, it is not safe to rely on socket creation or connect status to judge node failures. Please use an explicit method to test whether an app instance is running or not, e.g., using a socket read timeout as described above.
+   Do not rely on socket creation or connect status to determine if a node has failed. Due to the Android emulator networking setup, it    is not safe to rely on socket creation or connect status to judge node failures. Please use an explicit method to test whether an app    instance is running or not, e.g., using a socket read timeout as described above.
 
-When a coordinator for a request fails and it does not respond to the request, its successor can be contacted next for the request.
+   When a coordinator for a request fails and it does not respond to the request, its successor can be contacted next for the request.
