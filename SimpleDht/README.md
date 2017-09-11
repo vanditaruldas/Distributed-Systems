@@ -9,9 +9,9 @@ Just like the previous assignment, your app should have an activity and a conten
 <h3>References</h3>
 Before we discuss the requirements of this assignment, here are two references for the Chord design:
 
-    1) Lecture slides on Chord
+   1) Lecture slides on Chord
     
-    2) Chord paper
+   2) Chord paper
     
 The lecture slides give an overview, but do not discuss Chord in detail, so it should be a good reference to get an overall idea. The paper presents pseudo code for implementing Chord, so it should be a good reference for actual implementation.
 
@@ -88,11 +88,11 @@ First of all, your app should have a content provider. This content provider sho
 <h3>Step 2: Writing the Main Activity</h3>
 The template has an activity used for your own testing and debugging. It has three buttons, one button that displays “Test”, one button that displays “LDump” and another button that displays “GDump.” As with the previous assignment, “Test” button is already implemented (it’s the same as “PTest” from the last assignment). You can implement the other two buttons to further test your DHT.
     
-    1) LDump
+   1) LDump
        When touched, this button should dump and display all the <key, value> pairs stored in your local partition of the node.
        This means that this button can give @ as the selection parameter to query().
     
-    2) GDump
+   2) GDump
        When touched, this button should dump and display all the <key, value> pairs stored in your whole DHT. Thus, LDump button is for        local dump, and this button (GDump) is for global dump of the entire <key, value> pairs.
        This means that this button can give * as the selection parameter to query().
 
