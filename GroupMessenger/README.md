@@ -1,5 +1,5 @@
 <h2>CSE 486/586 Distributed Systems</h2>
-<h2>Programming Assignment 2, Part B</h2>
+<h2>Programming Assignment 2</h2>
 <h2>Group Messenger with Total and FIFO Ordering Guarantees</h2>
 
 <h3>Introduction</h3>
