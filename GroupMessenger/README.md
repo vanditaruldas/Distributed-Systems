@@ -100,9 +100,13 @@ This is the meat of this assignment and you need to implement total and FIFO gua
 4) There will be at most one failure of an app instance in the middle of execution.  We will emulate a failure only by force closing an app instance. We will not emulate a failure by killing an entire emulator instance. When a failure happens, the app instance will never come back during a run.
 
     a) Each message should be used to detect a node failure.
+    
     b) For this purpose, you can use a timeout for a socket read; you can pick a reasonable timeout value (e.g., 500 ms), and if a node        does not respond within the timeout, you can consider it a failure.
+    
     c) This means that you need to handle socket timeout exceptions in addition to socket creation/connection exceptions.
+    
     d) Do not just rely on socket creation or connect status to determine if a node has failed. Due to the Android emulator networking          setup, it is not safe to just rely on socket creation or connect status to judge node failures. Please also use socket read              timeout exceptions as described above.
+    
     e) You cannot assume which app instance will fail. In fact, the grader will run your group messenger multiple times and each time it        will kill a different instance. Thus, you should not rely on chance (e.g., randomly picking a central sequencer) to handle              failures. This is just hoping to avoid failures. Instead, you should implement a decentralized algorithm (e.g., something based          on ISIS).
     
 5) When handling a failure, it is important to make sure that your implementation does not stall. After you detect a failure, you need to clean up any state related to it, and move on.
