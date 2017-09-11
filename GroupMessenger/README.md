@@ -98,6 +98,7 @@ This is the meat of this assignment and you need to implement total and FIFO gua
 3) You need to come up with an algorithm that provides a total-FIFO ordering under a failure.
 
 4) There will be at most one failure of an app instance in the middle of execution.  We will emulate a failure only by force closing an app instance. We will not emulate a failure by killing an entire emulator instance. When a failure happens, the app instance will never come back during a run.
+
     a) Each message should be used to detect a node failure.
     b) For this purpose, you can use a timeout for a socket read; you can pick a reasonable timeout value (e.g., 500 ms), and if a node        does not respond within the timeout, you can consider it a failure.
     c) This means that you need to handle socket timeout exceptions in addition to socket creation/connection exceptions.
