@@ -1,4 +1,5 @@
-<h2>CSE 486/586 Distributed Systems Programming Assignment 3</h2>
+<h2>CSE 486/586 Distributed Systems</h2>
+<h2>Programming Assignment 3</h2>
 <h2>Simple DHT</h2>
 
 <h3>Introduction</h3>
