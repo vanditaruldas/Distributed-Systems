@@ -57,6 +57,7 @@ All keys and values that your provider stores should use the string data type.
 
 <h3>Step 2: Implementing Multicast</h3>
 The final step is implementing multicast, i.e., sending messages to multiple AVDs. The requirements are the following.
+
 1) Your app should multicast every user-entered message to all app instances (including the one that is sending the message). In the rest of the description, “multicast” always means sending a message to all app instances.
 
 2) Your app should be able to send/receive multiple times.
