@@ -24,16 +24,16 @@ All keys and values that your provider stores should use the string data type.
 
 5) Since the column names are “key” and “value”, any app should be able to insert a <key, value> pair as in the following example:
 
-    ContentValues keyValueToInsert = new ContentValues();
+        ContentValues keyValueToInsert = new ContentValues();
 
-    // inserting <”key-to-insert”, “value-to-insert”>
-    keyValueToInsert.put(“key”, “key-to-insert”);
-    keyValueToInsert.put(“value”, “value-to-insert”);
+        // inserting <”key-to-insert”, “value-to-insert”>
+        keyValueToInsert.put(“key”, “key-to-insert”);
+        keyValueToInsert.put(“value”, “value-to-insert”);
 
-    Uri newUri = getContentResolver().insert(
-        providerUri,    // assume we already created a Uri object with our provider URI
-        keyValueToInsert
-    );
+        Uri newUri = getContentResolver().insert(
+            providerUri,    // assume we already created a Uri object with our provider URI
+            keyValueToInsert
+        );
 
 6) If there’s a new value inserted using an existing key, you need to keep only the most recent value. You should not preserve the history of values under the same key.
 
