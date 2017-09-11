@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/C:/Users/Vandit/Desktop/College%20Stuff/Sem%202/Distributed%20Systems/PA/PA1/SimpleMessenger/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="app_name">SimpleMessenger</string>
+    <string name="hint_type">Type</string>
+</resources>
