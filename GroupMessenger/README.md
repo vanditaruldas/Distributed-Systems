@@ -39,15 +39,15 @@ All keys and values that your provider stores should use the string data type.
 
 7) Similarly, any app should be able to read a <key, value> pair from your provider with query(). Since your provider is a simple <key, value> table, we are not going to follow the Android convention; your provider should be able to answer queries as in the following example:
 
-Cursor resultCursor = getContentResolver().query(
-    providerUri,    // assume we already created a Uri object with our provider URI
-    null,                // no need to support the projection parameter
-    “key-to-read”,    // we provide the key directly as the selection parameter
-    null,                // no need to support the selectionArgs parameter
-    null                 // no need to support the sortOrder parameter
-);
+        Cursor resultCursor = getContentResolver().query(
+                providerUri,    // assume we already created a Uri object with our provider URI
+                null,                // no need to support the projection parameter
+                “key-to-read”,    // we provide the key directly as the selection parameter
+                null,                // no need to support the selectionArgs parameter
+                null                 // no need to support the sortOrder parameter
+        );
 
-Thus, your query() implementation should read the selection parameter and use it as the key to retrieve from your table. In turn, the Cursor returned by your query() implementation should include only one row with two columns using your provider’s column names, i.e., “key” and “value”. You probably want to use android.database.MatrixCursor instead of implementing your own Cursor.
+      Thus, your query() implementation should read the selection parameter and use it as the key to retrieve from your table. In turn,       the Cursor returned by your query() implementation should include only one row with two columns using your provider’s column             names, i.e., “key” and “value”. You probably want to use android.database.MatrixCursor instead of implementing your own Cursor.
 
 8) Your provider should store the <key, value> pairs using one of the data storage options. The details of possible data storage options are in http://developer.android.com/guide/topics/data/data-storage.html. You can choose any option; however, the easiest way to do this is probably use the internal storage with the key as the file name and the value stored in the file.
 
@@ -89,6 +89,7 @@ The final step is implementing multicast, i.e., sending messages to multiple AVD
 
 <h3>Step 3: Implementing Total and FIFO Ordering Guarantees</h3>
 This is the meat of this assignment and you need to implement total and FIFO guarantees. You will need to design an algorithm that does this and implement it. An important thing to keep in mind is that there will be a failure of an app instance in the middle of the execution. The requirements are:
+
 1) Your app should multicast every user-entered message to all app instances (including the one that is sending the message). In the rest of the description, “multicast” always means sending a message to all app instances.
 
 2) Your app should use B-multicast. It should not implement R-multicast.
